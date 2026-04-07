@@ -1,0 +1,13 @@
+[project]
+name = "wuxing-color-engine"
+version = "0.1.0"
+description = "BaZi and WuXing calculation utilities."
+readme = "README.md"
+requires-python = ">=3.8,<3.13"
+authors = [
+  { name = "Ken" }
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

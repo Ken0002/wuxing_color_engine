@@ -1,1 +1,7 @@
 test.py
+.venv/
+__pycache__/
+*.pyc
+.codex
+collect_data/
+data/
