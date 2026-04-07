@@ -7,7 +7,7 @@
 - `main.py`：主要入口，整合八字與日期五行能量計算
 - `bazi_calculator.py`：可獨立執行的八字計算模組
 - `date_energy_calculator.py`：可獨立執行的日期五行能量計算模組
-- `core_scoring.py`：核心 scoring engine，結合命主喜忌與日期 signature 輸出五行分數與排名
+- `core_scoring.py`：核心 scoring engine，只依靠出生時間與目標日期推導命主喜忌、五行分數與排名
 
 ## 環境建立
 
@@ -94,20 +94,21 @@ python date_energy_calculator.py -h
 === 核心算法 ===
 命主判定: 身強 (support=7.67, balance=6.33)
 命主喜忌: 喜:火、土、金 / 忌:水
+命主來源: birth_only_inference
 日期 signature: 月=木 / 日=火 / 轉化=火
-計分模式: dataset 生日精準命中
+計分模式: 純輸入推導
 五行分數: 木 74 / 火 24 / 土 40 / 金 95 / 水 72
 排名: 金 > 木 > 水 > 土 > 火
 ```
 
 ## 核心算法說明
 
-- 日期端使用 `month_element + day_element + 轉化元素` 當作 signature；`dataset.csv` 顯示同一個 signature 會對應同一組五行模板。
-- 命主端先看 `dataset.csv` 是否有完全相同的 birth；若有，直接套用該命主的 `fav_elements / unfav_elements`。
-- 如果 birth 不在 dataset 中，會改用八字日主強弱 heuristic 推估喜忌：
+- runtime 不再讀 `dataset.csv`；推論時只需要 `birth_datetime` 與 `target_date`。
+- 命主端先由八字推日主強弱，再用扶抑法推喜忌：
   - 身強偏向喜「洩、耗、制」，也就是食傷、財、官殺。
   - 身弱偏向喜「生、扶」，也就是印星、比劫。
-- 目前只有兩個命主資料可校準，所以已知 profile 會是精準模式；未知 profile 仍可算，但屬近似推估。
+- 日期端先把目標日期轉成 `month_element + day_element + 轉化元素`，再用固定係數模型換成五行分數基底。
+- `dataset.csv` 目前只保留作為離線校準與驗證資料，不參與 runtime inference。
 
 ## 版本與相容性
 
