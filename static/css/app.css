@@ -1,0 +1,276 @@
+:root {
+  --bg-top: #f7f1e4;
+  --bg-bottom: #e8dcc4;
+  --panel: rgba(255, 250, 241, 0.9);
+  --panel-border: rgba(108, 82, 47, 0.16);
+  --text-main: #352517;
+  --text-soft: #6a5340;
+  --accent: #8f4f2b;
+  --accent-deep: #6f3517;
+  --accent-pale: #f0e2d2;
+  --shadow: 0 20px 60px rgba(84, 55, 28, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Noto Serif TC", "PingFang TC", "Microsoft JhengHei", serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top right, rgba(173, 102, 47, 0.18), transparent 28%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+.page-shell {
+  width: min(960px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 28px 0 48px;
+}
+
+.hero {
+  padding: 12px 4px 18px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+}
+
+.hero-copy {
+  max-width: 42rem;
+  margin: 12px 0 0;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+.panel {
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.panel-head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.panel-head h2,
+.panel-head p,
+.result-block h3,
+.result-block p {
+  margin: 0;
+}
+
+.panel-head h2 {
+  font-size: 1.15rem;
+}
+
+.panel-head p {
+  margin-top: 6px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.panel-step {
+  flex: 0 0 auto;
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #a65a31, #8b4320);
+  color: #fffaf4;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+}
+
+.selector-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.birth-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.query-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+label {
+  display: grid;
+  gap: 8px;
+}
+
+label span {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+select,
+button {
+  appearance: none;
+  border: 1px solid rgba(105, 76, 51, 0.2);
+  border-radius: 16px;
+  font: inherit;
+}
+
+select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 237, 223, 0.98));
+  color: var(--text-main);
+}
+
+select:focus,
+button:focus {
+  outline: 2px solid rgba(143, 79, 43, 0.3);
+  outline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+button {
+  min-height: 52px;
+  padding: 0 22px;
+  background: linear-gradient(145deg, var(--accent), var(--accent-deep));
+  color: #fff8f1;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.03);
+}
+
+.status-text {
+  min-height: 1.5em;
+  color: var(--text-soft);
+}
+
+.result-panel {
+  padding-bottom: 18px;
+}
+
+.result-empty {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+.result-card {
+  display: grid;
+  gap: 16px;
+}
+
+.result-block {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(249, 241, 229, 0.92));
+  border: 1px solid rgba(125, 92, 62, 0.12);
+}
+
+.result-block h3 {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.result-value {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.result-subvalue {
+  margin-top: 4px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.ranking-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 8px;
+}
+
+.ranking-list li {
+  line-height: 1.6;
+}
+
+.is-hidden {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .birth-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 18px, 680px);
+    padding-top: 18px;
+  }
+
+  .panel {
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  .birth-grid,
+  .query-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .query-grid label:last-child,
+  .birth-grid label:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .actions {
+    align-items: stretch;
+  }
+
+  button {
+    width: 100%;
+  }
+}

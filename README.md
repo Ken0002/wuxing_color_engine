@@ -44,6 +44,15 @@ python -m pip install -r requirements.txt
 python main.py --birth-datetime "1996-04-27 17:30" --target-date 2026-04-02
 ```
 
+Web 介面：
+
+```bash
+python -m pip install -r requirements.txt
+python web.py
+```
+
+開啟 `http://0.0.0.0:7788` 或你的機器 IP `:7788`
+
 八字計算：
 
 ```bash
@@ -109,6 +118,7 @@ python date_energy_calculator.py -h
   - 身弱偏向喜「生、扶」，也就是印星、比劫。
 - 日期端先把目標日期轉成 `month_element + day_element + 轉化元素`，再用固定係數模型換成五行分數基底。
 - `dataset.csv` 目前只保留作為離線校準與驗證資料，不參與 runtime inference。
+- `web.py` 會沿用目前 `main.py` 的 `v1` 核心算法；`v2` 仍保留作為獨立實驗版，不會自動接到網頁或 CLI。
 
 ## 版本與相容性
 

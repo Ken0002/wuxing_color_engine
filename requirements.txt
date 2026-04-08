@@ -1,2 +1,1 @@
-# This project currently uses only Python's standard library.
-# Keep this file so both Python 3.8 and 3.12 machines can create the same venv flow.
+flask

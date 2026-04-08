@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    >
+    <title>五行能量查詢</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">WuXing Color Engine</p>
+        <h1>五行能量查詢</h1>
+        <p class="hero-copy">
+          先記住你的出生資料，再選一天，立刻看命主喜忌、當日五行與能量排行。
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <span class="panel-step">01</span>
+          <div>
+            <h2>填入 Birth</h2>
+            <p>出生年月日與時間會自動快取，下次開網頁會直接帶回。</p>
+          </div>
+        </div>
+
+        <div class="selector-grid birth-grid">
+          <label>
+            <span>年</span>
+            <select id="birth-year"></select>
+          </label>
+          <label>
+            <span>月</span>
+            <select id="birth-month"></select>
+          </label>
+          <label>
+            <span>日</span>
+            <select id="birth-day"></select>
+          </label>
+          <label>
+            <span>時</span>
+            <select id="birth-hour"></select>
+          </label>
+          <label>
+            <span>分</span>
+            <select id="birth-minute"></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <span class="panel-step">02</span>
+          <div>
+            <h2>選擇查詢日期</h2>
+            <p>進入頁面時會自動停在今天；手機上會以系統滾輪選單呈現。</p>
+          </div>
+        </div>
+
+        <div class="selector-grid query-grid">
+          <label>
+            <span>年</span>
+            <select id="query-year"></select>
+          </label>
+          <label>
+            <span>月</span>
+            <select id="query-month"></select>
+          </label>
+          <label>
+            <span>日</span>
+            <select id="query-day"></select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="lookup-button" type="button">查詢五行能量</button>
+          <p id="status-text" class="status-text" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="panel result-panel">
+        <div class="panel-head">
+          <span class="panel-step">03</span>
+          <div>
+            <h2>查詢結果</h2>
+            <p>只顯示你要看的核心資訊：喜忌、日期與五行排行。</p>
+          </div>
+        </div>
+
+        <div id="result-empty" class="result-empty">
+          選好出生資料與查詢日期後，按下按鈕就會在這裡顯示結果。
+        </div>
+
+        <div id="result-card" class="result-card is-hidden">
+          <div class="result-block">
+            <h3>命主喜忌</h3>
+            <p id="fav-summary" class="result-value"></p>
+          </div>
+
+          <div class="result-block">
+            <h3>當日資訊</h3>
+            <p id="date-pillars" class="result-value"></p>
+            <p id="date-elements" class="result-subvalue"></p>
+          </div>
+
+          <div class="result-block">
+            <h3>五行排行</h3>
+            <ol id="ranking-list" class="ranking-list"></ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
