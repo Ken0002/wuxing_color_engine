@@ -51,9 +51,9 @@ def build_ranking_payload(scores: Dict[str, int], ranking: Tuple[str, ...]):
         {
             "element": element,
             "score": scores[element],
-            "label": f"{index}. {element} {scores[element]}分",
+            "label": f"{element} {scores[element]}分",
         }
-        for index, element in enumerate(ranking, start=1)
+        for element in ranking
     ]
 
 
