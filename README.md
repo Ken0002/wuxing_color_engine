@@ -8,6 +8,7 @@
 - `bazi_calculator.py`：可獨立執行的八字計算模組
 - `date_energy_calculator.py`：可獨立執行的日期五行能量計算模組
 - `core_scoring.py`：核心 scoring engine，只依靠出生時間與目標日期推導命主喜忌、五行分數與排名
+- `batch_reports/generate_date_range_report.py`：以 `config.json` 批次生成日期區間資料，並輸出逐日分頁 PDF
 
 ## 環境建立
 
@@ -77,6 +78,38 @@ python main.py -h
 python bazi_calculator.py -h
 python date_energy_calculator.py -h
 ```
+
+批次生成日期區間報表：
+
+```bash
+python batch_reports/generate_date_range_report.py --config batch_reports/config.example.json
+```
+
+`config` 範例：
+
+```json
+{
+  "name": "Ken",
+  "birth_datetime": "1996-04-27 17:30",
+  "start_date": "2026-04-01",
+  "end_date": "2026-04-07",
+  "output_pdf": "output/wuxing_date_range_report.pdf",
+  "report_title": "每日五行能量建議書",
+  "report_subtitle": "個人化日期範圍報表"
+}
+```
+
+- `name`：使用者姓名，會顯示在首頁
+- `birth_datetime`：出生時間，格式為 `YYYY-MM-DD HH:MM`
+- `start_date` / `end_date`：生成區間，格式為 `YYYY-MM-DD`，包含起訖日
+- `output_pdf`：輸出 PDF 路徑；若為相對路徑，會以 config 檔所在目錄為基準
+- `report_title`：PDF 首頁主標題
+- `report_subtitle`：PDF 首頁副標題
+
+輸出的 PDF 結構為：
+
+- 第 1 頁：使用者總覽頁，包含姓名、出生日期、八字、命主喜忌、日期區間、顏色對應表與閱讀說明
+- 第 2 頁起：每日建議頁，包含日期、星期、干支、五行摘要、今日一句話結論、五行排行表、主色/輔助色/避免色/配件色與簡短說明
 
 ## 輸出範例
 
