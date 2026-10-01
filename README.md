@@ -7,13 +7,12 @@
 - `main.py`：主要入口，整合八字與日期五行能量計算
 - `bazi_calculator.py`：可獨立執行的八字計算模組
 - `date_energy_calculator.py`：可獨立執行的日期五行能量計算模組
+- `batch_reports/`：批次 PDF 報告、設定、文案與輸出，詳見 [報告說明](batch_reports/README.md)
 - `core_scoring.py`：核心 scoring engine，只依靠出生時間與目標日期推導命主喜忌、五行分數與排名
-- `batch_reports/generate_date_range_report.py`：以 `config.json` 批次生成日期區間資料，並輸出逐日分頁 PDF
 
 ## 環境建立
 
-這個專案目前只使用 Python 標準函式庫，沒有第三方套件依賴。  
-即使如此，仍建議使用 `venv` 管理環境。
+核心計算使用 Python 標準函式庫；Web 介面需要 Flask，PDF 報告需要 ReportLab。請使用 `venv` 管理環境。
 
 Python 3.12：
 
@@ -82,7 +81,7 @@ python date_energy_calculator.py -h
 批次生成日期區間報表：
 
 ```bash
-python batch_reports/generate_date_range_report.py --config batch_reports/config.example.json
+.venv/bin/python batch_reports/generate_date_range_report.py --config batch_reports/config/config.example.json
 ```
 
 `config` 範例：
@@ -93,7 +92,7 @@ python batch_reports/generate_date_range_report.py --config batch_reports/config
   "birth_datetime": "1996-04-27 17:30",
   "start_date": "2026-04-01",
   "end_date": "2026-04-07",
-  "output_pdf": "output/wuxing_date_range_report.pdf",
+  "output_pdf": "wuxing_date_range_report.pdf",
   "report_title": "每日五行能量建議書",
   "report_subtitle": "個人化日期範圍報表"
 }
@@ -102,7 +101,7 @@ python batch_reports/generate_date_range_report.py --config batch_reports/config
 - `name`：使用者姓名，會顯示在首頁
 - `birth_datetime`：出生時間，格式為 `YYYY-MM-DD HH:MM`
 - `start_date` / `end_date`：生成區間，格式為 `YYYY-MM-DD`，包含起訖日
-- `output_pdf`：輸出 PDF 路徑；若為相對路徑，會以 config 檔所在目錄為基準
+- `output_pdf`：只填以 `.pdf` 結尾的檔案名稱；程式固定輸出到 `batch_reports/output/`
 - `report_title`：PDF 首頁主標題
 - `report_subtitle`：PDF 首頁副標題
 
@@ -150,11 +149,12 @@ python batch_reports/generate_date_range_report.py --config batch_reports/config
   - 身強偏向喜「洩、耗、制」，也就是食傷、財、官殺。
   - 身弱偏向喜「生、扶」，也就是印星、比劫。
 - 日期端先把目標日期轉成 `month_element + day_element + 轉化元素`，再用固定係數模型換成五行分數基底。
-- `dataset.csv` 目前只保留作為離線校準與驗證資料，不參與 runtime inference。
+- `compare_scoring_models.py` 是離線算法比較工具，需要自行提供 `data/dataset.csv`；目前專案未附該資料。
 - `web.py` 會沿用目前 `main.py` 的 `v1` 核心算法；`v2` 仍保留作為獨立實驗版，不會自動接到網頁或 CLI。
 
 ## 版本與相容性
 
 - 專案版本限制寫在 `pyproject.toml`
 - 支援範圍為 `>=3.8,<3.13`
-- 目前 `requirements.txt` 只保留作為統一環境流程用
+- `requirements.txt`：Web 介面的 Flask 依賴
+- `batch_reports/requirements.txt`：PDF 報告依賴

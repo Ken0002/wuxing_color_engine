@@ -1,0 +1,15 @@
+{
+  "outfit_strategy": {
+    "conservative": "保守穿法：{main_color}單穿",
+    "safe_combo": "安全搭配：{combo}",
+    "accessory": "配件方向：{accessory_color}作小面積點綴",
+    "accessory_none": "配件方向：配件可延續主色"
+  },
+  "daily_insight": {
+    "close_top2": "今日主色選擇彈性高，{top1}、{top2}皆可優先搭配。",
+    "dominant_top1": "今日主色集中，建議整體穿搭以單一主色為主。",
+    "very_low_last": "低分色不建議大面積使用，請避免作為主色。",
+    "balanced": "今日各色差距不大，搭配自由度較高。",
+    "accessory_differs": "今日配件可另選色系，不必和主色綁在一起。"
+  }
+}

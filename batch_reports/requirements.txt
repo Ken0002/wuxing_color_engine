@@ -1,0 +1,2 @@
+# Compatible with the project's Python 3.8 environment.
+reportlab==4.0.9
